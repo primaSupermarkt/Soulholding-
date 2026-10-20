@@ -143,6 +143,71 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 footer nav{display:flex;gap:22px}
 footer a:hover{color:var(--white)}
 
+/* Scroll story: a sticky stage the visitor scrubs through like a film. The tower builds floor by floor; a white wave floods the stage for the last chapter. No libraries, nothing loaded from third parties. */
+.story{position:relative}
+.stage{position:relative}
+.js-story .story{height:460vh}
+.js-story .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;isolation:isolate;background:var(--black)}
+.st-wave{display:none}
+.js-story .st-wave{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.st-layer{position:relative;z-index:2;color:var(--white)}
+.js-story .st-layer{position:absolute;inset:0;mix-blend-mode:difference}
+.st-layer .wrap{position:relative;height:100%}
+
+/* giant word behind everything */
+.bgword{display:none}
+.js-story .bgword{display:block;position:absolute;left:50%;top:44%;font-family:var(--display);font-weight:900;font-size:clamp(9rem,27vw,30rem);line-height:1;letter-spacing:-.06em;color:#1E1E1C;white-space:nowrap;will-change:transform,opacity;pointer-events:none;opacity:0}
+
+/* chapter copy */
+.st-copy{display:grid;gap:56px;padding-block:clamp(72px,10vw,140px)}
+.js-story .st-copy{position:absolute;top:50%;left:max(20px,env(safe-area-inset-left,0px));width:min(440px,36vw);gap:0;padding:0;transform:translateY(-50%)}
+.js-story .chap{grid-area:1/1;will-change:transform,opacity}
+.chap .label{color:var(--grey);display:block;margin-bottom:18px}
+.chap h2{margin:0 0 22px;font-family:var(--wide);font-stretch:125%;font-weight:800;font-size:clamp(3rem,6.4vw,6.4rem);line-height:.9;letter-spacing:-.01em;text-transform:uppercase;overflow:hidden;padding-bottom:.06em}
+.chap h2 span{display:inline-block;will-change:transform}
+.chap p{margin:0;max-width:34ch;font-size:1.05rem;line-height:1.6;color:#BDBCB6}
+
+/* progress rail */
+.st-rail{display:none}
+.js-story .st-rail{display:flex;gap:10px;position:absolute;left:max(20px,env(safe-area-inset-left,0px));bottom:30px;align-items:center}
+.st-rail i{display:block;width:44px;height:2px;background:#2E2E2C;overflow:hidden}
+.st-rail i b{display:block;height:100%;background:var(--white);transform:scaleX(0);transform-origin:left}
+
+/* tower */
+.tower{display:none}
+.js-story .tower{display:block;position:absolute;left:68%;bottom:11vh;bottom:11svh;--tw:clamp(160px,17vw,260px);--fh:clamp(30px,6vh,62px);--gap:6px;width:var(--tw);height:calc(var(--fh)*6.45 + var(--gap)*6);transform:translateX(-50%)}
+.tw-body{position:absolute;inset:0;transform-origin:50% 100%;will-change:transform}
+.floor{position:absolute;left:50%;width:var(--tw);height:var(--fh);margin-left:calc(var(--tw)/-2);bottom:calc(var(--fh)*.45 + var(--gap) + (var(--i) - 1)*(var(--fh) + var(--gap)));background:var(--white);will-change:transform,opacity;opacity:0}
+.floor::before{content:"";position:absolute;inset:30% 9%;background:repeating-linear-gradient(90deg,var(--black) 0 10px,transparent 10px 22px)}
+.floor.base{--w:calc(var(--tw)*1.55);width:var(--w);margin-left:calc(var(--w)/-2);height:calc(var(--fh)*.45);bottom:0;opacity:1;transform-origin:50% 50%}
+.floor.base::before{display:none}
+.floor.crown{--w:calc(var(--tw)*.66);width:var(--w);margin-left:calc(var(--w)/-2);display:flex;align-items:center;justify-content:center}
+.floor.crown::before{display:none}
+.floor.crown span{font-family:var(--display);font-weight:900;font-size:calc(var(--fh)*.62);letter-spacing:-.12em;color:var(--black);line-height:1;padding-right:.1em}
+.dust{position:absolute;left:50%;bottom:calc(var(--fh)*.45);width:0;height:0}
+.dust i{position:absolute;left:-4px;top:-8px;width:8px;height:8px;background:var(--white);opacity:0;will-change:transform,opacity}
+
+/* company cards */
+.st-card{position:absolute;left:0;bottom:0;width:clamp(150px,14vw,220px);padding:14px 16px 16px;background:var(--white);color:var(--black);opacity:0;will-change:transform,opacity;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.st-card .top{display:flex;justify-content:space-between;align-items:center;gap:6px;white-space:nowrap;font-family:var(--wide);font-stretch:125%;font-weight:600;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase}
+.st-card .top em{font-style:normal;border:1px solid currentColor;padding:4px 6px}
+.st-card .top em.solid{background:var(--black);color:var(--white);border-color:var(--black)}
+.st-card b{display:block;margin-top:26px;font-family:var(--display);font-weight:900;font-size:clamp(1.25rem,1.9vw,1.9rem);line-height:.95;letter-spacing:-.04em}
+.st-card b em{font-weight:400;font-style:italic}
+
+@media (max-width:760px){
+  .js-story .story{height:420vh}
+  .js-story .st-copy{top:clamp(84px,13svh,120px);width:auto;right:max(20px,env(safe-area-inset-right,0px));transform:none}
+  .chap .label{margin-bottom:12px}
+  .chap h2{font-size:clamp(2.6rem,13vw,4rem);margin-bottom:14px}
+  .chap p{font-size:.98rem}
+  .js-story .tower{left:50%;bottom:9svh;--tw:clamp(118px,34vw,150px);--fh:clamp(24px,4.4svh,40px)}
+  .st-card{width:120px;padding:9px 10px 11px}
+  .st-card b{margin-top:16px;font-size:1.15rem}
+  .st-card .top{font-size:.5rem;letter-spacing:.18em}
+  .js-story .st-rail{bottom:22px}
+}
+
 /* Scroll reveal: elements rest visible; JS only adds a small lift as they arrive */
 .reveal{transition:transform 1s cubic-bezier(.16,1,.3,1)}
 .reveal.pending{transform:translateY(40px)}
@@ -181,6 +246,54 @@ footer a:hover{color:var(--white)}
     <div class="wrap">
       <div class="label reveal">Über uns</div>
       <p class="reveal">Wir gründen Unternehmen <em>und bauen sie auf.</em> Inhabergeführt, aus der Region Stuttgart.</p>
+    </div>
+  </section>
+
+  <section class="story" id="story" aria-label="Wie wir arbeiten">
+    <div class="stage">
+      <svg class="st-wave" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path fill="#F5F4F0" d="M0 100 L100 100 L100 100 L0 100 Z"/></svg>
+      <div class="st-layer">
+        <div class="bgword" aria-hidden="true">Idee</div>
+        <div class="bgword" aria-hidden="true">Aufbau</div>
+        <div class="bgword" aria-hidden="true">Wachstum</div>
+
+        <div class="tower" aria-hidden="true">
+          <div class="tw-body">
+            <div class="dust"></div>
+            <div class="floor base"></div>
+            <div class="floor" style="--i:1"></div>
+            <div class="floor" style="--i:2"></div>
+            <div class="floor" style="--i:3"></div>
+            <div class="floor" style="--i:4"></div>
+            <div class="floor" style="--i:5"></div>
+            <div class="floor crown" style="--i:6"><span>SH</span></div>
+          </div>
+          <div class="st-card"><div class="top"><span>Nº 01</span><em>Gegründet</em></div><b>Prima <em>Supermarkt</em></b></div>
+          <div class="st-card"><div class="top"><span>Nº 02</span><em>Gegründet</em></div><b>Chicago <em>Chicken</em></b></div>
+          <div class="st-card"><div class="top"><span>Nº 03</span><em class="solid">Exit</em></div><b>Die <em>Notretter</em></b></div>
+        </div>
+
+        <div class="wrap">
+          <div class="st-copy">
+            <div class="chap">
+              <span class="label">Kapitel 01</span>
+              <h2><span>Gründen</span></h2>
+              <p>Jedes Unternehmen beginnt mit einer Entscheidung. Wir treffen sie selbst und gründen aus eigener Hand.</p>
+            </div>
+            <div class="chap">
+              <span class="label">Kapitel 02</span>
+              <h2><span>Aufbauen</span></h2>
+              <p>Standort, Team, Abläufe. Stockwerk für Stockwerk, bis das Unternehmen von allein trägt.</p>
+            </div>
+            <div class="chap">
+              <span class="label">Kapitel 03</span>
+              <h2><span>Wachsen</span></h2>
+              <p>Drei Gründungen bisher. Eine davon haben wir erfolgreich verkauft.</p>
+            </div>
+          </div>
+        </div>
+        <div class="st-rail" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+      </div>
     </div>
   </section>
 
@@ -311,6 +424,128 @@ footer a:hover{color:var(--white)}
   els.forEach(function(el){var r=el.getBoundingClientRect();if(r.top>innerHeight)el.classList.add('pending')});
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pending');io.unobserve(e.target)}})},{threshold:.15});
   els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<script>
+/* Scroll story: scroll position drives every frame, so scrolling back plays it in reverse. */
+(function(){
+  var story=document.getElementById('story');
+  if(!story||!window.requestAnimationFrame)return;
+  document.documentElement.classList.add('js-story');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile=matchMedia('(max-width:760px)');
+  var stage=story.querySelector('.stage');
+  var path=story.querySelector('.st-wave path');
+  var words=story.querySelectorAll('.bgword');
+  var chaps=story.querySelectorAll('.chap');
+  var bars=story.querySelectorAll('.st-rail b');
+  var tower=story.querySelector('.tower');
+  var body=story.querySelector('.tw-body');
+  var floors=story.querySelectorAll('.floor:not(.base)');
+  var base=story.querySelector('.floor.base');
+  var cards=story.querySelectorAll('.st-card');
+  var dustBox=story.querySelector('.dust');
+
+  function clamp(v){return v<0?0:v>1?1:v}
+  function seg(p,a,b){return clamp((p-a)/(b-a))}
+  function eo(t){return 1-Math.pow(1-t,3)}
+  function eio(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function lerp(a,b,t){return a+(b-a)*t}
+
+  // Falling "grains" for chapter 1, seeded so every visit looks the same.
+  var seed=7;function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
+  var N=28,dust=[];
+  for(var i=0;i<N;i++){
+    var el=document.createElement('i');dustBox.appendChild(el);
+    var s=4+rnd()*7;el.style.width=el.style.height=s+'px';
+    dust.push({el:el,x0:(rnd()-.5)*3.2,x1:(rnd()-.5)*1.3,d:(i/N)*.62+rnd()*.06,spin:(rnd()<.5?-1:1)*(180+rnd()*360)});
+  }
+
+  var H=0,TW=0,TH=0;
+  function measure(){H=stage.clientHeight;TW=tower.clientWidth;TH=tower.clientHeight}
+
+  // Card resting spots, relative to the tower's base centre (in tower widths / heights).
+  function spots(){
+    return mobile.matches
+      ?[{x:-.95,y:-.95,r:-7},{x:.95,y:-.62,r:6},{x:-.95,y:-.2,r:-3}]
+      :[{x:-1.12,y:-.66,r:-8},{x:1.12,y:-.9,r:6},{x:1.02,y:-.28,r:-4}];
+  }
+  var from=[{x:-2.6,y:-1.6,r:-40},{x:2.8,y:-1.9,r:35},{x:2.4,y:.6,r:-30}];
+
+  function render(){
+    var r=story.getBoundingClientRect();
+    var total=story.offsetHeight-H;
+    var p=total>0?clamp(-r.top/total):0;
+    if(reduce)p=p<.36?.25:p<.7?.555:1; // jump between finished chapter states, no in-between motion
+
+    // background words drift right → left
+    var wr=[[0,.34],[.26,.68],[.6,1.06]];
+    for(var w=0;w<words.length;w++){
+      var a=wr[w][0],b=wr[w][1],t=seg(p,a,b);
+      var vis=Math.min(seg(p,a,a+.06),1-seg(p,b-.06,b));
+      if(w===0)vis=1-seg(p,b-.06,b);
+      words[w].style.opacity=vis;
+      words[w].style.transform='translate('+lerp(-20,-80,t)+'%,-50%)';
+    }
+
+    // chapter copy: rise in, rise out
+    var cr=[[-1,0,.26,.32],[.30,.36,.56,.62],[.66,.74,2,3]];
+    for(var c=0;c<chaps.length;c++){
+      var inn=cr[c][0]<0?1:eo(seg(p,cr[c][0],cr[c][1]));
+      var out=eio(seg(p,cr[c][2],cr[c][3]));
+      var ch=chaps[c];
+      ch.style.opacity=Math.min(inn,1-out);
+      ch.style.transform='translateY('+((1-inn)*50-out*50)+'px)';
+      ch.querySelector('h2 span').style.transform='translateY('+((1-inn)*105-out*105)+'%)';
+      ch.style.visibility=(inn<=0||out>=1)?'hidden':'visible';
+    }
+    bars[0].style.transform='scaleX('+seg(p,0,.3)+')';
+    bars[1].style.transform='scaleX('+seg(p,.3,.62)+')';
+    bars[2].style.transform='scaleX('+seg(p,.62,1)+')';
+
+    // chapter 1: grains fall onto the foundation, which grows
+    var c1=seg(p,.02,.24);
+    for(var k=0;k<N;k++){
+      var d=dust[k],tt=clamp((c1-d.d)/.3);
+      var y=-H*(1-tt*tt), x=lerp(d.x0,d.x1,eo(tt))*TW*.5;
+      var fade=1-clamp((c1-d.d-.3)/.08);
+      d.el.style.opacity=tt>0?fade:0;
+      d.el.style.transform='translate('+x+'px,'+y+'px) rotate('+(d.spin*tt)+'deg)';
+    }
+    base.style.transform='scaleX('+(.06+.94*eo(c1))+')';
+
+    // chapter 2: floors drop in one after another
+    var c2=seg(p,.30,.54);
+    for(var f=0;f<floors.length;f++){
+      var ft=clamp((c2-f/floors.length*.8)/.22), e=eo(ft);
+      floors[f].style.opacity=ft>0?1:0;
+      floors[f].style.transform='translateY('+(-(1-e)*(H+120))+'px) rotate('+((1-e)*(f%2?7:-7))+'deg)';
+    }
+
+    // wave: the white floods up between chapter 2 and 3
+    var wv=eio(seg(p,.58,.70)), base0=lerp(104,-12,wv), amp=7*Math.sin(Math.PI*wv), ph=wv*7;
+    var dpath='M0 '+(base0+amp*Math.sin(ph)).toFixed(2);
+    for(var q=1;q<=20;q++){var xx=q*5;dpath+=' L'+xx+' '+(base0+amp*Math.sin(ph+xx*.075)).toFixed(2)}
+    path.setAttribute('d',dpath+' L100 100 L0 100 Z');
+
+    // chapter 3: company cards fly in and settle around the tower
+    var c3=seg(p,.68,.94), sp=spots();
+    body.style.transform='scale('+(1-.1*eo(c3))+')';
+    for(var j=0;j<cards.length;j++){
+      var ct=eo(clamp((c3-j*.16)/.62));
+      var bob=Math.sin(p*18+j*2)*6*ct;
+      var cx=lerp(from[j].x,sp[j].x,ct)*TW, cy=lerp(from[j].y,sp[j].y,ct)*TH+bob, rot=lerp(from[j].r,sp[j].r,ct);
+      var cw=cards[j].offsetWidth, chh=cards[j].offsetHeight;
+      cards[j].style.opacity=ct>0?Math.min(1,ct*3):0;
+      cards[j].style.transform='translate('+(TW/2+cx-cw/2)+'px,'+(cy+chh/2)+'px) rotate('+rot+'deg)';
+    }
+  }
+
+  var ticking=false;
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;render()})}}
+  measure();render();
+  addEventListener('scroll',req,{passive:true});
+  addEventListener('resize',function(){measure();req()});
 })();
 </script>
 </body>
